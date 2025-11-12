@@ -1,0 +1,36 @@
+
+print("Welcome to my Roblox game!")
+local SharedModule = {}
+
+function SharedModule.Greet(playerName)
+    return "Hello, " .. playerName .. "! Welcome to the game!"
+end
+
+return SharedModule
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local module = ReplicatedStorage:WaitForChild("SharedModule")
+
+Players.PlayerAdded:Connect(function(player)
+    local message = module.Greet(player.Name)
+    print(message) -- This prints in the output for demonstration
+end)
+{
+    "name": "MyRobloxProject",
+    "tree": {
+        "$className": "DataModel",
+        "ServerScriptService": {
+            "$path": "src/ServerScriptService"
+        },
+        "ReplicatedStorage": {
+            "$path": "src/ReplicatedStorage"
+        },
+        "StarterPlayer": {
+            "$className": "StarterPlayer",
+            "StarterPlayerScripts": {
+                "$path": "src/StarterPlayer/StarterPlayerScripts"
+            }
+        }
+    }
+}
